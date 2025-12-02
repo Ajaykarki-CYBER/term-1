@@ -1,190 +1,229 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creative To-Do List</title>
+<meta charset="UTF-6">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project - My To-Do List Web App</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-
 body {
-  margin: 0;
-  font-family: "Poppins", Arial, sans-serif;
-  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #4a9dfc, #6ee9ff);
+    color: #333;
 }
 
+/* NAVBAR */
 nav {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  padding: 18px 30px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    background: linear-gradient(90deg, #3f2b96, #5a5a5a);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-nav .logo {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.logo-1 {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+/* MENU */
 nav ul {
-  display: flex;
-  gap: 25px;
-  list-style: none;
-  font-size: 16px;
+    list-style: none;
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-left: 0;
 }
 
-nav ul li:hover {
-  color: #ffd369;
-  cursor: pointer;
+nav ul li a {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
 }
 
 .container {
-  max-width: 950px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    font-size: 18px;
+    line-height: 1.7;
 }
 
-input, select {
-  padding: 12px;
-  border: 2px solid #d0d4db;
-  border-radius: 12px;
-  width: 100%;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-label {
-  font-weight: 600;
-}
-
-.add-btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  font-size: 18px;
-  border-radius: 12px;
-  font-weight: 600;
-  margin-top: 10px;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  transition: 0.3s;
-}
-
-.add-btn:hover {
-  background: linear-gradient(135deg, #764ba2, #667eea);
-  transform: translateY(-3px);
-}
-
-.priority-box {
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: 600;
-  color: #333;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.low { background: #d6ffdf; }
-.medium { background: #fff4c2; }
-.high { background: #ffc7c7; }
-
+/* TASK CARDS */
 .task-card {
-  padding: 18px;
-  border-radius: 15px;
-  margin-top: 20px;
+  border-radius: 12px;
   color: white;
-  font-weight: 600;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  padding: 18px;
+  margin-top: 15px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  flex-wrap: wrap; /* makes responsive */
 }
 
-.low-border  { background: linear-gradient(135deg, #52db75, #2ea44f); }
-.medium-border { background: linear-gradient(135deg, #ffdf6b, #e4b800); }
-.high-border { background: linear-gradient(135deg, #ff6b6b, #d90429); }
+.low-border { background: #36b657; }
+.medium-border { background: #ffd966; color: black; }
+.high-border { background: #e63c30; }
 
-.task-card .icon {
-  font-size: 30px;
+.status-btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: none;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
+/* PRIORITY BOXES */
+.priority-box {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.low { background: greenyellow; }
+.medium { background: yellow; }
+.high { background: red; }
+
+/* ------------------ RESPONSIVE FIXES ------------------ */
+@media (max-width: 768px) {
+
   nav {
-    flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    text-align: center;
   }
+
+  .logo-1 {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
   nav ul {
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .task-card {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .task-card div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
 </style>
 </head>
+
 <body>
+
 <nav>
-  <div class="logo">My To-Do web app</div>
+  <div class="logo"><img src="logo.png" alt=""></div>
+
+  <div class="logo-1">TO DO LIST WEB APP</div>
+
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="to do list web app.html">Project</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="ateam.html">Learning Group</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="to do list web app.html">Project</a></li>
+      <li><a href="report.html">Report</a></li>
   </ul>
 </nav>
+
 <div class="container">
-  <h2>➤ Add New Task</h2>
 
-  <label>Task Name</label>
-  <input type="text" placeholder="Enter task...">
+<h2>Add New Task</h2>
+<br>
 
-  <label>Category</label>
-  <select>
-    <option>Select Category</option>
-    <option>Work</option>
-    <option>Study</option>
-    <option>Personal</option>
-  </select>
+<label>Task Name:</label>
+<input type="text" style="width:100%; padding:8px; margin-bottom:15px;" placeholder="Enter task...">
 
-  <label>Priority</label>
-  <select>
-    <option>Select Priority</option>
-    <option>Low</option>
-    <option>Medium</option>
-    <option>High</option>
-  </select>
+<label>Category:</label>
+<select style="width:100%; padding:8px; margin-bottom:15px;">
+  <option>Select Category</option>
+  <option>Work</option>
+  <option>Study</option>
+  <option>Personal</option>
+</select>
 
-  <button class="add-btn">+ Add Task</button>
+<label>Priority:</label>
+<select style="width:100%; padding:8px; margin-bottom:15px;">
+  <option>Select Priority</option>
+  <option>Low</option>
+  <option>Medium</option>
+  <option>High</option>
+</select>
 
+<button style="width:100%; padding:10px; font-weight:bold;">+ Add Task</button>
 
-  <h3 style="margin-top: 35px;">Priority Meaning</h3>
+<br><br>
 
-  <div class="priority-box low">🟢 Low Priority — Relax, plenty of time.</div>
-  <div class="priority-box medium">🟡 Medium Priority — Try to finish soon.</div>
-  <div class="priority-box high">🔴 High Priority — Complete ASAP!</div>
+<h3>Priority Meaning</h3>
 
-  <h2 style="margin-top: 35px;">➤ Sample Tasks</h2>
+<div class="priority-box low">Low — Plenty of time</div>
+<div class="priority-box medium">Medium — Try to finish soon</div>
+<div class="priority-box high">High — Complete ASAP</div>
 
-  <div class="task-card low-border">
-    <div class="icon">📚</div>
-    Finish English Notes  
+<h2 style="margin-top:30px;">Sample Tasks</h2>
+
+<div class="task-card low-border">
+  Finish English Notes
+  <div>
+    22-11-2025 10:00 AM
+    <button class="status-btn">✔ ✖</button>
   </div>
+</div>
 
-  <div class="task-card medium-border">
-    <div class="icon">🛒</div>
-    Buy Groceries for Home  
+<div class="task-card medium-border">
+  Buy Groceries for Home
+  <div>
+    22-11-2025 2:00 PM
+    <button class="status-btn">✔ ✖</button>
   </div>
+</div>
 
-  <div class="task-card high-border">
-    <div class="icon">🔥</div>
-    Complete College Project Submission  
+<div class="task-card high-border">
+  Complete College Project Submission
+  <div>
+    22-11-2025 5:00 PM
+    <button class="status-btn">✔ ✖</button>
   </div>
+</div>
 
 </div>
 
